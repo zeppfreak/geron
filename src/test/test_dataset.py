@@ -15,3 +15,10 @@ def test_csv_reader_dataset():
 
     for d in dataset.take(1):
         print(d)
+
+def test_csv_to_np_dataset():
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    filepath = "../../data/train.csv"
+    print(filepath)
+    d = Dataset.csv_to_np_dataset(filepath)
+    print(d)
