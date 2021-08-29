@@ -18,14 +18,6 @@ class Dataset:
     def csv_to_np_dataset(filepath):
         return np.loadtxt(filepath, delimiter=',', skiprows=1)
 
-@tf.function
-def preprocess(line):
-    defs = [0.] * 8 + [tf.constant([], dtype=tf.float32)]
-    fields = tf.io.decode_csv(line, record_defaults=defs)
-    x = tf.stack(fields[:-1])
-    y = tf.stack(fields[-1:])
-    return x,y
-
 if __name__ == '__main__':
     import os
     os.chdir(os.path.dirname(os.path.abspath(__file__)))
