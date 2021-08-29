@@ -1,12 +1,16 @@
 import tensorflow as tf
 
 def create_preprocess(model_id):
+    print(f"model_id is {model_id}.")
+    
     if model_id == "singleinput_singleoutput":
         return _preprocess__singleinput__singleoutput
     elif model_id == "multiinput_singleoutput":
         return _preprocess_multiinput__singleoutput
     elif model_id == "multiinput_multioutput":
         return _preprocess_multiinput__multioutput
+    else:
+        return None
 
 @tf.function
 def _preprocess__singleinput__singleoutput(line):
