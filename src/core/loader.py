@@ -1,5 +1,6 @@
 import os
 import numpy as np
+from sklearn.pipeline import Pipeline
 
 class Loader:
     def create_csv_for_california_housing(filepath):
@@ -18,12 +19,16 @@ class Loader:
             y_train_full,
             random_state=42
             )
-        
-        scaler = StandardScaler()
-        X_train = scaler.fit_transform(X_train)
-        X_valid = scaler.fit_transform(X_valid)
-        X_test = scaler.fit_transform(X_test) 
+        # preprocess 
+        pipeline = Pipeline(steps=[
+            ("standard_scaler", StandardScaler())
+        ], verbose=True)
 
+        X_train = pipeline.fit_transform(X_train)
+        X_valid = pipeline.fit_transform(X_valid)
+        X_test = pipeline.fit_transform(X_test) 
+
+        # dump csv
         train_data = np.c_[X_train, y_train]
         valid_data = np.c_[X_valid, y_valid]
         test_data = np.c_[X_test, y_test]
