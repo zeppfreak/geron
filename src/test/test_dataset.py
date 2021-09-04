@@ -4,7 +4,7 @@ import os
 import sys
 
 sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-from core.dataset import Dataset
+from logic.dataset import Dataset
 
 def test_csv_reader_dataset():
     import os
